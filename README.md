@@ -28,8 +28,13 @@ Initialize the `spec/` directory (where specs will reside) with:
 rails generate rspec:install
 ```
 
-This adds `spec/spec_helper.rb` and `.rspec` files that are used for
-configuration. See those files for more information.
+This adds the following files which are used for configuration:
+
+- `.rspec`
+- `spec/spec_helper.rb`
+- `spec/rails_helper.rb`
+
+See those files for more information.
 
 To run your specs, use the `rspec` command:
 
@@ -70,7 +75,7 @@ Model specs reside in the `spec/models` folder. Use model specs to describe
 behavior of models (usually ActiveRecord-based) in the application. For example:
 
 ```ruby
-require "spec_helper"
+require "rails_helper"
 
 describe User do
   it "orders by last name" do
@@ -91,7 +96,7 @@ Controller specs reside in the `spec/controllers` folder. Use controller specs
 to describe behavior of Rails controllers. For example:
 
 ```ruby
-require "spec_helper"
+require "rails_helper"
 
 describe PostsController do
   describe "GET #index" do
@@ -138,7 +143,7 @@ intent is to specify one or more request/response cycles from end to end using
 a black box approach.
 
 ```ruby
-require 'spec_helper'
+require 'rails_helper'
 describe "home page" do
   it "displays the user's username after successful login" do
     user = User.create!(:username => "jdoe", :password => "secret")
@@ -161,7 +166,7 @@ users like to use extension libraries like
 [Capybara](https://github.com/jnicklas/capybara):
 
 ```ruby
-require 'spec_helper'
+require 'rails_helper'
 describe "home page" do
   it "displays the user's username after successful login" do
     user = FactoryGirl.create(:user, :username => "jdoe", :password => "secret")
@@ -213,7 +218,7 @@ specs](https://www.relishapp.com/rspec/rspec-rails/v/3-0/docs/feature-specs/feat
 View specs live in spec/views, and mix in ActionView::TestCase::Behavior.
 
 ```ruby
-require 'spec_helper'
+require 'rails_helper'
 describe "events/index" do
   it "renders _event partial for each event" do
     assign(:events, [stub_model(Event), stub_model(Event)])
@@ -318,7 +323,7 @@ expect(rendered).to xxx
 Routing specs live in spec/routing.
 
 ```ruby
-require 'spec_helper'
+require 'rails_helper'
 describe "routing to profiles" do
   it "routes /profile/:username to profile#show for username" do
     expect(:get => "/profiles/jsmith").to route_to(
@@ -346,7 +351,7 @@ Provides a `helper` object which mixes in the helper module being spec'd, along
 with `ApplicationHelper` (if present).
 
 ```ruby
-require 'spec_helper'
+require 'rails_helper'
 describe EventsHelper do
   describe "#link_to_event" do
     it "displays the title, and formatted date" do
